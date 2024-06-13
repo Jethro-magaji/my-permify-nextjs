@@ -11,7 +11,7 @@ export default function IndexPage() {
   const handleLogin = async (role) => {
     try {
       if (!userId) {
-        alert('User ID is missing. Please log in.'); 
+        alert('User ID is missing. Please enter your User ID.'); 
         return; 
       }
 

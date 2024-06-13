@@ -8,7 +8,7 @@ const client = new permify.grpc.newClient({
 const authorizedUser = (permissionType) => {
   return async (req, res, next) => {
     try {
-       // Ensure req.query.userId exists
+       // Ensure req.params.userId exists
        if (!req.params.userId) {
         throw new Error('User ID is missing in the request parameters');
       }
@@ -20,8 +20,8 @@ const authorizedUser = (permissionType) => {
       const checkRes = await client.permission.check({
         tenantId: 't1',
         metadata: {
-          schemaVersion: 'cpktk19isfs46jbtvltg',
-          snapToken: 'yGm0D9xR2Bc=',
+          schemaVersion: 'cpln461isfs4nth2id60',
+          snapToken: 'GNnr6fGw2Bc=',
           depth: 20,
         },
         entity: {

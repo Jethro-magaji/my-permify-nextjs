@@ -7,7 +7,7 @@ const client = new permify.grpc.newClient({
 client.data.write({
     tenantId: "t1",
     metadata: {
-        schemaVersion: "cpktk19isfs46jbtvltg"
+        schemaVersion: "cpln461isfs4nth2id60"
     },
     "tuples": [
         {

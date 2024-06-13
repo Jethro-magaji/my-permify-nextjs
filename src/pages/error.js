@@ -9,7 +9,7 @@ export default function ErrorPage() {
           <p className="text-gray-600 text-lg">Sorry, you do not have access to the requested page.</p>
         </div>
 
-        <div className="text-center">
+        <div className="flex flex-col items-center">
           <img
             src="https://picsum.photos/300/200"
             alt="Error Illustration"
