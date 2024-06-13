@@ -5,10 +5,9 @@ const client = new permify.grpc.newClient({
   endpoint: "localhost:3478",
 });
 
-const checkPermissions = (permissionType) => {
+const authorizedUser = (permissionType) => {
   return async (req, res, next) => {
     try {
-     
        // Ensure req.query.userId exists
        if (!req.params.userId) {
         throw new Error('User ID is missing in the request parameters');
@@ -50,4 +49,4 @@ const checkPermissions = (permissionType) => {
   };
 };
 
-module.exports = checkPermissions;
+module.exports = authorizedUser;

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 export default function IndexPage() {
   const router = useRouter();
-  const [userId, setUserId] = useState(''); // State to store user ID
+  const [userId, setUserId] = useState(''); 
 
   // Manual configuration for the API port
   const apiPort = 3000; 
@@ -11,20 +11,16 @@ export default function IndexPage() {
   const handleLogin = async (role) => {
     try {
       if (!userId) {
-        // Handle the case where userId is not defined
         alert('User ID is missing. Please log in.'); 
         return; 
       }
 
-      // Send a GET request with query parameters
       const response = await fetch(`http://localhost:${apiPort}/${role}/${userId}`);
-      const data = await response.json(); // Use response.json()
+      const data = await response.json();
 
       if (data.message === 'You are authorized!') {
-        // User is authorized
         router.push(`/${role}`); 
       } else {
-        // User is not authorized
         router.push('/error'); 
       }
     } catch (error) {
@@ -38,12 +34,43 @@ export default function IndexPage() {
   };
 
   return (
-    <div>
-      <h1>Welcome</h1>
-      <input type="text" placeholder="Enter User ID" value={userId} onChange={handleUserIdChange} />
-      <button onClick={() => handleLogin('admin')}>Login to Dashboard</button>
-      <button onClick={() => handleLogin('member')}>Login to Member Page</button>
-      <button onClick={() => handleLogin('manager')}>Login to Manager Page</button>
+    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md p-6 bg-white rounded-md shadow-lg shadow-blue-500/50"> 
+        <div className="text-center mb-6"> {/* Add text-center for center alignment and mb-6 for bottom margin */}
+          <h2 className="text-2xl font-semibold text-gray-900">Welcome User! Please Login</h2> {/* Add heading styles */}
+        </div>
+
+        <div className="mb-4">
+          <input 
+            type="text" 
+            placeholder="Enter Your User ID" 
+            value={userId} 
+            onChange={handleUserIdChange} 
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-500 text-gray-900" // Add text-gray-900 for black text
+          />
+        </div>
+
+        <div className="flex justify-between space-x-2"> {/* Add space-x-2 for spacing between buttons */}
+          <button 
+            onClick={() => handleLogin('admin')}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500 text-sm" // Reduce text size
+          >
+            Admin Login
+          </button>
+          <button 
+            onClick={() => handleLogin('member')}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500 text-sm" // Reduce text size
+          >
+            Member Login
+          </button>
+          <button 
+            onClick={() => handleLogin('manager')}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500 text-sm" // Reduce text size
+          >
+            Manager Login
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
