@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors'); // Import cors
 const permify = require("@permify/permify-node");
-const authorizedRoute = require('./src/api/permission'); // Import the auth middleware
+const authorizedRoute = require('./src/api/permission'); // Import the permission middleware
 const bodyParser = require("body-parser");
 
 // Create Express app
@@ -15,9 +15,8 @@ app.use(bodyParser.json());
 
 // Define routes
 
-// Route for '/admin/:userId' where you want to enforce permission check
+// Route for '/admin/:userId'
 app.get('/admin/:userId', authorizedRoute('view_admin'), (req, res) => {
-  // If middleware allows the request to pass through, handle the route logic here
   if (req.body && req.body.message === 'You are authorized!') {
     res.json({ message: 'You have access to the dashboard!'});
   } else {
@@ -25,9 +24,8 @@ app.get('/admin/:userId', authorizedRoute('view_admin'), (req, res) => {
   }
 });
 
-// Route for '/member/:userId' where you want to enforce permission check
+// Route for '/member/:userId'
 app.get('/member/:userId', authorizedRoute('view_member'), (req, res) => {
-  // If middleware allows the request to pass through, handle the route logic here
   if (req.body && req.body.message === 'You are authorized!') {
     res.json({ message: 'You have access to the member page!'});
   } else {
@@ -35,9 +33,8 @@ app.get('/member/:userId', authorizedRoute('view_member'), (req, res) => {
   }
 });
 
-// Route for '/manager/:userId' where you want to enforce permission check
+// Route for '/manager/:userId'
 app.get('/manager/:userId', authorizedRoute('view_manager'), (req, res) => {
-  // If middleware allows the request to pass through, handle the route logic here
   if (req.body && req.body.message === 'You are authorized!') {
     res.json({ message: 'You have access to the manager page!'});
   } else {

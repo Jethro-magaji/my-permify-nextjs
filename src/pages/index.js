@@ -15,13 +15,13 @@ export default function IndexPage() {
         return; 
       }
 
-      const response = await fetch(`http://localhost:${apiPort}/${role}/${userId}`);
+      const response = await fetch(`http://localhost:${apiPort}/${role}/${userId}`); // send the role and userId to the backend for permission check 
       const data = await response.json();
 
       if (data.message === 'You are authorized!') {
-        router.push(`/${role}`); 
+        router.push(`/${role}`); // sends the authorized user to the authorized role page
       } else {
-        router.push('/error'); 
+        router.push('/error'); // sends unauthorized user to an error page.
       }
     } catch (error) {
       console.error('Error during login:', error);
