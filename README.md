@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## A Fullstack Next.js Application with [Permify](https://docs.permify.co/setting-up/installation/intro)
 
-## Getting Started
+This repository showcases a basic implementation of Role-Based Access Control (RBAC) using [Permify](https://docs.permify.co/setting-up/installation/intro) in a Next.js application with an Express.js backend. It demonstrates how to define roles, permissions, and user relationships in Permify and use them to control access to different parts of the application.
 
-First, run the development server:
+### Project Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+my-permify-nextjs-app/
+├── public/
+│   └── favicon.ico
+├── pages/
+│   ├── api
+│   │   └── permission.js
+│   ├── admin.js
+│   ├── error.js
+│   ├── index.js
+│   ├── manager.js
+│   └── member.js
+├── next.config.js
+├── package.json
+├── app-tenant.js
+├── app-schema.js
+├── app-relationship.js
+└── app.js  
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**File Descriptions:**
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* **`pages/`:** Contains all Next.js pages:
+    * **`pages/api/`:** Next.js API routes:
+        * **`pages/api/permission.js`:** Handles authorization checks using Permify and sends responses to the frontend.
+    * **`pages/admin.js`:** Component for the dashboard page, accessible only to admins.
+    * **`pages/error.js`:** Component for the error page, shown when unauthorized.
+    * **`pages/index.js`:**  Landing page with login buttons for different roles.
+    * **`pages/manager.js`:** Component for the manager page, accessible to managers and admins.
+    * **`pages/member.js`:** Component for the member page, accessible to members, managers, and admins.
+* **`next.config.js`:**  Next.js configuration file.
+* **`package.json`:**  Project dependencies.
+* **`app-tenant.js`:** Configuration for Permify tenant.
+* **`app-schema.js`:**  Defines the Permify schema with entities, roles, and permissions.
+* **`app.js`:**  Express.js backend server file handling API routes and authorization logic.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Getting Started
 
-## Learn More
+1.  **Install Dependencies:**
 
-To learn more about Next.js, take a look at the following resources:
+    ```bash
+    npm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2.  **Start the Permify Server (Docker):**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    ```bash
+    sudo docker run -p 3476:3476 -p 3478:3478 ghcr.io/permify/permify serve
+    ```
+    or 
+    please visit this [link](https://docs.permify.co/setting-up/installation/intro) to set up Permify based on your preference.
 
-## Deploy on Vercel
+3.  **Configure Permify:**
+    *   Replace `"your-tenant-id"` with your actual tenant ID.
+    *   Run `node app-schema.js` to write the schema to Permify.
+    *   Run `node app-permission.js` to grant the `admin` role access to the `organization` entity.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.  **Start the Backend Server:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    ```bash
+    node app.js
+    ```
+
+5.  **Start the Next.js Development Server:**
+
+    ```bash
+    npm run dev
+    ```
+
+6.  **Access the Application:** Navigate to `http://localhost:3000/` in your browser.
+
+### Usage
+
+*   Enter a User ID in the input field on the `index.js` page.
+*   Click the "Login" button for your desired role (Admin, Member, or Manager).
+*   The application will send a request to the `permission` API route for authorization.
+*   If authorized, you'll be redirected to the corresponding page.
+*   If unauthorized, you'll be redirected to the `error` page.
+
+### Key Features
+
+*   **Role-Based Access Control:** Users are assigned roles (admin, manager, member) with different permissions.
+*   **Permify Integration:**  Uses the `@permify/permify-node` and `@permify/react-role` libraries to implement authorization checks.
+*   **Next.js Routing:**  Handles client-side routing using `next/router`.
+*   **Express.js Backend:** Provides API routes for authorization checks.
+*   **Tailwind CSS:**  Uses Tailwind CSS for styling the frontend pages.
+
+### Notes
+
+*   **Authentication:**  This example uses simulated user data and authentication for demonstration purposes.  Replace it with your actual authentication system.
+*   **API Routes:** You will likely need to implement more robust API routes to handle user data, authorization, and other application logic.
+
+### Contributing
+
+Contributions are welcome!  Feel free to submit pull requests for bug fixes, feature enhancements, or documentation improvements.
+
+### License
+
+This project is licensed under the MIT License.

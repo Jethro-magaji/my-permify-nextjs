@@ -14,8 +14,8 @@ export default function IndexPage() {
         alert('User ID is missing. Please enter your User ID.'); 
         return; 
       }
-
-      const response = await fetch(`http://localhost:${apiPort}/${role}/${userId}`); // send the role and userId to the backend for permission check 
+      // send the role and userId to the backend for permission check
+      const response = await fetch(`http://localhost:${apiPort}/${role}/${userId}`);  
       const data = await response.json();
 
       if (data.message === 'You are authorized!') {
