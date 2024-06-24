@@ -58,16 +58,16 @@ export default function IndexPage() {
             Admin Login
           </button>
           <button 
-            onClick={() => handleLogin('member')}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500 text-sm" // Reduce text size
-          >
-            Member Login
-          </button>
-          <button 
             onClick={() => handleLogin('manager')}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500 text-sm" // Reduce text size
           >
             Manager Login
+          </button>
+          <button 
+            onClick={() => handleLogin('member')}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500 text-sm" // Reduce text size
+          >
+            Member Login
           </button>
         </div>
       </div>

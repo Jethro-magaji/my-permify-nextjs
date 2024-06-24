@@ -20,8 +20,8 @@ const authorizedUser = (permissionType) => {
       const checkRes = await client.permission.check({
         tenantId: 't1',
         metadata: {
-          schemaVersion: 'cpn2bv1isfs3gfv7ke6g',
-          snapToken: '0DQC7mdS2Rc=',
+          schemaVersion: 'cppn74gqhqsuh9t494vg',
+          snapToken: 'EKtUOKCO2hc=',
           depth: 20,
         },
         entity: {
