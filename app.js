@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors'); // Import cors
 const permify = require("@permify/permify-node");
-const authorizedRoute = require('./src/api/permission'); // Import the permission middleware
+const authorizedRoute = require('./app/api/permission'); // Import the permission middleware
 const bodyParser = require("body-parser");
 
 // Create Express app
